@@ -1,0 +1,20 @@
+1. How much of an improvement is PowerShell 7 over the previous version and should shops make the jump immediately?
+
+PowerShell 7 is a substantial upgrade from Windows PowerShell 5.1. The fact that it is open source and cross-platform is a huge change. This means PowerShell is now available for an entirely new group of IT Pros. Because it runs side-by-side with Windows PowerShell, and you can use PowerShell 7 to manage servers running Windows PowerShell, I encourage IT Pros to install PowerShell 7 on their desktop and begin using it as their daily driver. There's no urgent need to migrate servers to PowerShell 7 unless you want to take advantage of PowerShell remoting over SSH or run new PowerShell 7 commands on the servers.
+
+2. What is PSReadLine and is it a game changer for PowerShell?
+
+PSReadline is a PowerShell module from Microsoft that has been around for a while. It offers a number of features making PowerShell easier to use such as tab completion, command prediction, and now inline help, to name a few. I would say the recent releases of PSReadline are indeed game changers. The features in PSReadline will make IT Pros more efficient and reduce command-prompt friction.
+
+3. How will the move to an annual release cadence affect PowerShell and users? 
+
+I'm not sure it will affect users much either way. I would say a slower cadence may take off pressure to always be upgrading. Especially for organizations that are deploying PowerShell 7 to their servers.
+
+4. What is the most surprising new feature you encountered in PowerShell 7?
+
+I'm not sure anything in PowerShell 7 surprised me, other than maybe how easy it was to transition from spending my day in a Windows PowerShell prompt to living in PowerShell 7.
+
+5. What improvement would you like to see Microsoft make to PowerShell in the future?
+
+Well, if I had a compelling improvement request, I would have filed an issue on Github in the PowerShell repository  (https://github.com/PowerShell/PowerShell/). What you are really asking is what improvement can be made that only Microsoft can do, because the PowerShell community already fills in a lot of gaps with modules published to the PowerShell Gallery. I suppose one area of improvement that would help me is better searching and reporting of the PowerShell Gallery. I'd like a set of tools that provides more granular searching and discovery capabilities of community modules that could make my work easier.
+

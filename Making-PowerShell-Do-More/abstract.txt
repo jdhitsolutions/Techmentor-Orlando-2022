@@ -1,0 +1,10 @@
+Making PowerShell Do More with Less Work
+
+75 min 11/15/2022 9:15AM-10:30AM
+Intermediate / Advanced
+
+Using PowerShell interactively from a console prompt can be a tedious chore. There's soooooo much typing! But with a little upfront work, you can make PowerShell a snap to use and even something you look forward to using. It can be as simple as using command aliases, configuring command prediction, to writing proxy functions. Techmentor and PowerShell veteran Jeff Hicks will demonstrate all the ways you can get more out of PowerShell with less work.
+
+Learning Objective 1: Learn how to leverage PSDefaultParameter values
+Learning Objective 2: Learn how any why to create proxy functions
+Learning Objective 3: Learn how to extend an object in PowerShell

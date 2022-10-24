@@ -1,0 +1,10 @@
+File Management Tips & Tricks with PowerShell
+
+Intermediate / Advanced
+75 min 11/17/2022 1:00PM-2:15PM
+
+Are you responsible for managing file servers and shares? Or maybe you need better insights into your local files. PowerShell offers a number of tools and techniques you can use today to manage files and folders. From building utilization reports to interactive file highlighting, to creating symbolic links PowerShell author and teacher Jeff Hicks will demonstrate everything you need to know with plenty of code samples for everyone! This session will cover Windows PowerShell and PowerShell 7.
+
+Learning Objective 1:  Learn file and folder management changes in PowerShell 7
+Learning Objective 2:  Learn how to create utilization reports
+Learning Objective 3:  Learn how to create system and hard links.

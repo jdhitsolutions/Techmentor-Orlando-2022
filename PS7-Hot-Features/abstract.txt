@@ -1,0 +1,10 @@
+Hot Features in PowerShell 7
+
+20 minutes 11/15/2022 1:30PM-1:50PM
+Introductory and overview
+
+PowerShell 7 continues to mature with each release. It can be difficult to keep up. PowerShell expert Jeff Hicks will give you a quick taste of PowerShell 7 features that you should be using. Or if you were wondering why you should bother moving to PowerShell 7, this fast and furious session may be just what you need.
+
+Learning Objective 1:  Learn how to use PSStyle
+Learning Objective 2:  Learn how to get the most from PSReadline
+Learning Objective 3:  Learn PowerShell 7-only features
