@@ -174,6 +174,12 @@ Register-ArgumentCompleter -CommandName $cmd -ParameterName Name -ScriptBlock {
     }
 }
 
+# Install-Module UsefulArgumentCompleters
+# https://github.com/MartinGC94/UsefulArgumentCompleters
+#try Get-Volume -driveletter <tab>
+Get-UsefulArgumentCompleter
+Get-UsefulArgumentCompleter -CommandName get-volume
+
 #endregion
 #region Proxy functions
 
