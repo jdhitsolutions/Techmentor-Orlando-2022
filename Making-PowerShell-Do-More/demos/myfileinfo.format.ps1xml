@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+format type data generated 04/19/2019 13:22:11
+by BOVINE320\Jeff
+-->
+<Configuration>
+  <SelectionSets>
+    <SelectionSet>
+      <Name>FileSystemTypes</Name>
+      <Types>
+        <TypeName>System.IO.DirectoryInfo</TypeName>
+        <TypeName>System.IO.FileInfo</TypeName>
+      </Types>
+    </SelectionSet>
+  </SelectionSets>
+  <Controls>
+    <Control>
+      <Name>FileSystemTypes-GroupingFormat</Name>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <Frame>
+                <LeftIndent>4</LeftIndent>
+                <CustomItem>
+                  <Text AssemblyName="System.Management.Automation" BaseName="FileSystemProviderStrings" ResourceId="DirectoryDisplayGrouping"/>
+                  <ExpressionBinding>
+                    <ScriptBlock>
+                        $_.PSParentPath.Replace("Microsoft.PowerShell.Core\FileSystem::", "")
+                    </ScriptBlock>
+                  </ExpressionBinding>
+                  <NewLine/>
+                </CustomItem>
+              </Frame>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </Control>
+  </Controls>
+  <ViewDefinitions>
+    <View>
+      <!--Created 04/19/2019 13:22:11 by BOVINE320\Jeff-->
+      <Name>age</Name>
+      <ViewSelectedBy>
+        <SelectionSetName>FileSystemTypes</SelectionSetName>
+      </ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>PSParentPath</PropertyName>
+        <CustomControlName>FileSystemTypes-GroupingFormat</CustomControlName>
+      </GroupBy>
+      <ListControl>
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <PropertyName>Mode</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Created</Label>
+                <PropertyName>CreationTime</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Modified</Label>
+                <PropertyName>LastWriteTime</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>ModifiedAge</Label>
+                <Scriptblock>((Get-Date) - $_.LastWriteTime).toString()</Scriptblock>
+              </ListItem>
+              <ListItem>
+                <Label>Size</Label>
+                <ScriptBlock> if ($_ -is [system.io.fileinfo]) {
+                  $_.length
+                }
+                else {
+                  <!-- Write-Progress -Activity "Measuring Files" -status $_.fullname -->
+                  (Get-Childitem -path $_.fullname -file -recurse | Measure-object -property length -sum).sum
+                }
+                </ScriptBlock>
+              </ListItem>
+              <ListItem>
+                <PropertyName>Name</PropertyName>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
+      </ListControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

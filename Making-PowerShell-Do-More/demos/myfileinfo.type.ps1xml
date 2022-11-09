@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file was created with New-PSPropertySet from the
+PSTypeExtensionTools module which you can install from
+the PowerShell Gallery.
+
+Use Update-TypeData to append this file in your PowerShell session.
+-->
+<Types>
+  <Type>
+    <Name>System.IO.FileInfo</Name>
+    <Members>
+      <PropertySet>
+        <Name>info</Name>
+        <ReferencedProperties>
+          <Name>Directory</Name>
+          <Name>Name</Name>
+          <Name>IsReadOnly</Name>
+          <Name>CreationTime</Name>
+          <Name>LastWriteTime</Name>
+        </ReferencedProperties>
+      </PropertySet>
+    </Members>
+  </Type>
+</Types>
