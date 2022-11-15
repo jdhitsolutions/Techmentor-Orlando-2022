@@ -1,6 +1,7 @@
 return "This is a demo script file."
 
-#I'm using PowerShell 7.3. Most of these techniques will also work in Windows PowerShell 5.1.
+#I'm using PowerShell 7.3. Most of these techniques will also
+#work in Windows PowerShell 5.1.
 
 $PSVersionTable
 
