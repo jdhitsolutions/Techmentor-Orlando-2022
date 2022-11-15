@@ -24,7 +24,7 @@ ps
 #create your own
 Set-Alias -Name np -Value notepad.exe -Force -Description 'Techmentor demo'
 np
-Get-Alias | where description -EQ 'profile-defined' | select name, definition
+Get-Alias | where description -EQ 'profile-defined' | select name, definition |out-gridview
 
 #I call this in my profile script
 psedit .\jdh-aliases.ps1
@@ -89,7 +89,7 @@ psedit .\myfileinfo.format.ps1xml
 Update-FormatData .\myfileinfo.format.ps1xml
 
 #Install-Module PSScriptTools
-Get-FormatView system.io.fileinfo-extensions
+Get-FormatView system.io.fileinfo
 dir . | ft -View ansi
 dir . | fl -View age
 
