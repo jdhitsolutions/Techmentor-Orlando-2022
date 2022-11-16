@@ -29,6 +29,7 @@ Function New-OneDriveLink {
     Begin {
         Write-Verbose "Starting $($myinvocation.MyCommand)"
         #get the OneDrive folder location
+        #You could probably also use the OneDrive environtmet variable
         Try {
             $onedrive = (Get-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\OneDrive -Name UserFolder -ErrorAction Stop).userFolder
         }

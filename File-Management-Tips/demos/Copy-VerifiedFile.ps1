@@ -3,8 +3,7 @@
 
 # THIS FUNCTION SHOULD NOT BE CONSIDERED PRODUCTION-READY
 
-#simulate hash validation errors
-Function Copy-VerifiedFileTest {
+Function Copy-VerifiedFile {
     [cmdletbinding(SupportsShouldProcess)]
     [alias("cvf")]
     [OutputType("System.IO.FileInfo")]
@@ -58,7 +57,6 @@ Function Copy-VerifiedFileTest {
                             Write-Verbose "[$((Get-Date).TimeofDay) THREAD ] $path and $($filecopy.fullname) hash OK"
                         }
                     }
-
                 }
                 Catch {
                     Throw $_

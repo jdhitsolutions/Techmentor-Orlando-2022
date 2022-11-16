@@ -17,7 +17,6 @@ Enum FileAge {
     OneDay
 }
 Function Get-FileAgeGroup {
-
     [cmdletbinding()]
     [alias("gfa")]
     [OutputType("FileAgingInfo")]

@@ -1,5 +1,5 @@
 #display weather in the lower right corner of the session
-Param([string]$Zipcode = "13078")
+Param([string]$Zipcode = "32801")
 
 $left = $host.ui.RawUI.WindowSize.width - 23
 $pos = [system.management.automation.host.coordinates]::new($left, 1)
