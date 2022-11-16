@@ -132,18 +132,18 @@ Measure-Command {
 Enter-PSSession -HostName srv1 -UserName artd -SSHTransport
 
 $PSVersiontable
-get-variable is*
+Get-Variable is*
 
 Enter-PSSession -HostName fred-company-com -UserName jeff -SSHTransport
 
-New-pssession -computer dom1,srv2
-new-pssession -HostName fred-company-com -UserName jeff -SSHTransport
-new-pssession -HostName srv1 -UserName artd -SSHTransport
+New-PSSession -computer dom1,srv2
+New-PSSession -HostName fred-company-com -UserName jeff -SSHTransport
+New-PSSession -HostName srv1 -UserName artd -SSHTransport
 Get-PSSession
 
 #use full cmdlet names to avoid issues
 #Sort on linux runs the native command, not Sort-Object
-invoke-command { Get-Process | sort-object WS -Descending | select-object -first 1} -session (Get-PSSession)
+Invoke-Command { Get-Process | Sort-Object WS -Descending | select-object -first 1} -session (Get-PSSession)
 
 #endregion
 #region PSReadline
@@ -172,6 +172,4 @@ Set-PSReadLineOption -Colors @{
    ListPrediction = $psstyle.foreground.brightblue
 } -PredictionSource History -PredictionViewStyle ListView
 
-
 #endregion
-
