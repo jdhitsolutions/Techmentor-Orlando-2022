@@ -2,7 +2,6 @@ return "This is a demo script file."
 
 #region PSStyle File Display
 
-
 Dir c:\work
 Get-ExperimentalFeature
 
@@ -235,7 +234,28 @@ Get-Job -State Failed | receive-job -keep -Verbose
 Get-Job | Remove-Job
 cls
 #endregion
+#region FileSystemWatcher
+#create an event subscriber to watch for changes to a folder
+#https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=netframework-4.8
 
+$watcher = [System.IO.FileSystemWatcher]::new("c:\work")
+$watcher.EnableRaisingEvents = $true
+$watcher.IncludeSubdirectories = $true
+$watcher
+$watcher | Get-Member -MemberType event
+Register-ObjectEvent $watcher -EventName Created -SourceIdentifier WatchWork -MessageData "New work item detected"
+Get-EventSubscriber
+#create a new file
+get-process | out-file c:\work\data.txt
+Get-Event
+(Get-Event).sourceeventargs
+(Get-Event).sourceeventargs.foreach({Get-Item $_.fullpath})
+#unregister the event subscriber
+Unregister-Event WatchWork
+#remove the event queue
+Get-Event | Remove-Event
+
+#endregion
 #region Finding duplicates
 
 # https://github.com/psDevUK/PSDupes
