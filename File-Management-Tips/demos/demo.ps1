@@ -2,11 +2,17 @@ return "This is a demo script file."
 
 #region PSStyle File Display
 
-Dir c:\work
+Dir c:\work | Select -first 15
+#you might need this for versions prior to 7.3
 Get-ExperimentalFeature
-
 Enable-ExperimentalFeature PSAnsiRenderingFileInfo -WhatIf
 #reboot
+
+$psstyle
+$psstyle | Get-Member
+$psstyle.Foreground
+$psstyle.Background
+
 $psstyle.FileInfo
 
 <#
@@ -36,17 +42,13 @@ Extension    : .zip    = "`e[35;1m"
                .jpg    = "`e[38;5;111m"
                .jpeg   = "`e[38;5;111m"
 #>
-$psstyle
-$psstyle | Get-Member
-$psstyle.Foreground
-$psstyle.Background
 #set a new style
 #this change lasts until the end of your session
 $psstyle.fileinfo.Directory = $psstyle.Background.Yellow+$psstyle.Foreground.green+$psstyle.Bold+$psstyle.Italic
 dir c:\work -Directory
 
 #changing file extensions
-$psstyle.FileInfo.Extension
+$psstyle.FileInfo
 #you can use any ANSI sequence
 $psstyle.FileInfo.Extension[".ps1"] = "`e[38;5;51m"
 
@@ -81,7 +83,7 @@ Get-Item $profile
 
 help New-Item -Parameter ItemType
 psedit .\New-OneDriveLink.ps1
-
+. .\New-OneDriveLink.ps1
 New-OneDriveLink -Path c:\work -Name Scratch -WhatIf
 dir C:\work\scratch
 Get-Item c:\work\scratch | select target
@@ -91,6 +93,7 @@ dir C:\users\jeff\OneDrive\scratch
 Remove-Item c:\work\scratch
 
 psedit .\New-FileLink.ps1
+. .\new-filelink.ps1
 New-FileLink -TargetPath c:\work -SourceFile $env:OneDrive\tools\du.exe -verbose
 c:\work\du
 c:\work\du -c -q -nobanner c:\work | ConvertFrom-Csv
@@ -185,7 +188,7 @@ cls
 Get-FileHash -Path $profile
 help Get-fileHas h -parameter Algorithm
 
-dir c:\work -file | Get-FileHash
+dir c:\work -file | Get-FileHash | Out-GridView
 
 #copy with validation
 $file =  "C:\scripts\PSMusicFiles.zip"
@@ -254,6 +257,48 @@ Get-Event
 Unregister-Event WatchWork
 #remove the event queue
 Get-Event | Remove-Event
+
+#using an Action scriptblock
+$path = "C:\work\watch"
+$watcher = [System.IO.FileSystemWatcher]($path)
+
+#register the event
+#possible events are Changed,Deleted,Created
+#define an action scriptblock
+#$event is a built-in object. It is the object you would see
+#with Get-Event
+$sb = {
+  "$(Get-Date) A new item was created: $($event.sourceEventArgs.fullpath)" |
+  Out-File $env:temp\log.txt -Append
+}
+#enable the watcher
+$watcher.EnableRaisingEvents = $True
+
+$rParams = @{
+  InputObject      = $watcher
+  Eventname        = "Created"
+  SourceIdentifier = "ItemCreated"
+  MessageData      = "A new item was created"
+  Action           = $sb
+}
+Register-ObjectEvent @rParams
+#Now change files in $path
+# When using an action block there are no events to see with Get-Event
+Get-Content $env:temp\log.txt
+
+#each event needs its own event subscriber
+Register-ObjectEvent -InputObject $watcher -EventName "changed" -SourceIdentifier "FileChange" `
+  -MessageData "An existing item was changed" -Action {
+  "$(Get-Date) An existing item was changed: $($event.sourceEventArgs.fullpath)" |
+  Out-File $env:temp\log.txt -Append
+}
+
+Get-EventSubscriber
+get-date | out-file c:\work\watch\foo.txt
+Get-Content $env:temp\log.txt
+get-date | out-file c:\work\watch\foo.txt
+Get-Content $env:temp\log.txt
+get-eventsubscriber | Unregister-event
 
 #endregion
 #region Finding duplicates

@@ -25,7 +25,7 @@ Function Get-FileAgeGroup {
         [ValidateNotNullOrEmpty()]
         [System.IO.FileInfo]$FilePath,
         [Parameter(HelpMessage = "Specify if grouping by the file's CreationTime or LastWriteTime property. The default is LastWriteTime.")]
-        [ValidateSet("CreationTime","LastWritetime")]
+        [ValidateSet("CreationTime","LastWritetime","LastAccessTime")]
         [ValidateNotNullOrEmpty()]
         [string]$Property = "LastWriteTime",
         [Parameter(HelpMessage = "How do you want the files organized? The default is Month.")]

@@ -22,7 +22,6 @@ Function Copy-VerifiedFile {
         Write-Verbose "[$((Get-Date).TimeofDay) BEGIN  ] Starting $($myinvocation.mycommand)"
         #specify the hashing algorithm
         $hashing = "MD5"
-
     } #begin
 
     Process {
